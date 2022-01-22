@@ -1,15 +1,20 @@
+require('make-promises-safe')
+
 // CommonJs
 const fastify = require('fastify')({
   logger: true
 })
 
-// fastify.register(require('./our-db-connector'))
-// fastify.register(require('./our-first-route'))
+fastify.get('/', async (request, reply) => {
+  return { hello: 'world' }
+})
 
-fastify.listen(3000, function (err, address) {
-  if (err) {
+const start = async () => {
+  try {
+    await fastify.listen(3000)
+  } catch (err) {
     fastify.log.error(err)
     process.exit(1)
   }
-  // Server is now listening on ${address}
-})
+}
+start()

@@ -20,6 +20,7 @@
     "standard": "^16.0.4"
   },
   "dependencies": {
-    "fastify": "^3.27.0"
+    "fastify": "^3.27.0",
+    "make-promises-safe": "^5.1.0"
   }
 }
