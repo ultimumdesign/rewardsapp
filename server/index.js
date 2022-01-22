@@ -7,7 +7,7 @@ const fastify = require('fastify')({
 })
 
 fastify.register(require('fastify-static'), {
-  root: path.join(__dirname, 'build')
+  root: path.resolve(__dirname, '../', 'build')
 })
 
 fastify.get('/', async (request, reply) => {
