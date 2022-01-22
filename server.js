@@ -1,12 +1,17 @@
 require('make-promises-safe')
+const path = require('path')
 
 // CommonJs
 const fastify = require('fastify')({
   logger: true
 })
 
+fastify.register(require('fastify-static'), {
+  root: path.join(__dirname, 'public')
+})
+
 fastify.get('/', async (request, reply) => {
-  return { hello: 'world' }
+  reply.sendFile('index.html')
 })
 
 const start = async () => {
