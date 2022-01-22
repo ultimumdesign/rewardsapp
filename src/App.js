@@ -7,7 +7,7 @@ function App () {
       <header className='App-header'>
         <img src={logo} className='App-logo' alt='logo' />
         <p>
-          new message
+          Welcome to Smokey Rewards
         </p>
         <a
           className='App-link'
