@@ -97,7 +97,7 @@ function Profile () {
 
 function Members () {
   const { user, getAccessTokenSilently } = useAuth0()
-  const [membersData, setMembersData] = useState([])
+  const [membersData, setMembersData] = useState(null)
 
   useEffect(() => {
     const getMembers = async () => {
@@ -109,8 +109,8 @@ function Members () {
             Authorization: `Bearer ${accessToken}`
           }
         })
-
-        setMembersData(response.json())
+        const body = await response.json()
+        setMembersData(body)
       } catch (e) {
         console.log(e.message)
       }
