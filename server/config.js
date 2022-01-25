@@ -3,7 +3,7 @@ const environments = {}
 
 environments.production = {
   authprovider: {
-    audience: `https://${process.env.AUTH_DOMAIN}/api/v2/`,
+    audience: process.env.AUTH_AUDIENCE,
     domain: process.env.AUTH_DOMAIN,
     secret: process.env.AUTH_SECRET,
     api_audience: process.env.AUTH_API_AUDIENCE
