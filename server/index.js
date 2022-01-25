@@ -1,5 +1,10 @@
 require('make-promises-safe')
+require('dotenv').config()
 const path = require('path')
+
+const config = require('./config')
+
+const members = require('./routes/v1/members')
 
 // CommonJs
 const fastify = require('fastify')({
@@ -10,8 +15,16 @@ fastify.register(require('fastify-static'), {
   root: path.resolve(__dirname, '../', 'build')
 })
 
+fastify.register(require('fastify-auth0-verify'), {
+  audience: config.authprovider.audience,
+  domain: config.authprovider.domain,
+  secret: config.authprovider.secret
+})
+
+fastify.register(members, { prefix: 'api/v1' })
+
 fastify.get('/', async (request, reply) => {
-  if (process.env.NODE_ENV === 'production' && request.headers['x-forwarded-proto'] !== 'https') {
+  if (config.env === 'production' && request.headers['x-forwarded-proto'] !== 'https') {
     reply.redirect(`https://${request.hostname}${request.url}`)
   } else { reply.sendFile('index.html') }
 })
@@ -24,4 +37,5 @@ const start = async () => {
     process.exit(1)
   }
 }
+
 start()

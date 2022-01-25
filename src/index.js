@@ -6,12 +6,15 @@ import App from './App'
 import reportWebVitals from './reportWebVitals'
 import { Auth0Provider } from '@auth0/auth0-react'
 
+const domain = 'dev-meerxp4s.us.auth0.com'
 ReactDOM.render(
   <React.StrictMode>
     <Auth0Provider
-      domain='dev-meerxp4s.us.auth0.com'
+      domain={domain}
       clientId='QIWbjTPIoaCgxdRmTWTfbBwougcwnpZB'
       redirectUri={window.location.origin}
+      audience={`https://${domain}/api/v2/`}
+      scope='read:current_user update:current_user_metadata'
     >
       <BrowserRouter>
         <App />
