@@ -16,7 +16,7 @@ fastify.register(require('fastify-static'), {
 })
 
 fastify.register(require('fastify-auth0-verify'), {
-  audience: config.authprovider.audience,
+  audience: config.authprovider.api_audience,
   domain: config.authprovider.domain,
   secret: config.authprovider.secret
 })
