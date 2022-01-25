@@ -19,7 +19,7 @@ function App () {
     const getUserNavPerm = async () => {
       try {
         const accessToken = await getAccessTokenSilently({
-          audience: process.env.AUTH_API_AUDIENCE,
+          audience: 'https://rewards.smokeywarez.com/api/v1',
           scope: 'read:members'
         })
 
