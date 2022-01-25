@@ -19,15 +19,12 @@ function App () {
     const getUserNavPerm = async () => {
       try {
         const accessToken = await getAccessTokenSilently()
-
-        console.log(jwtDecode(accessToken))
-
-        setReadMembersScope(true)
+        const decoded = jwtDecode(accessToken)
+        if (decoded.permissions && decoded.permissions.includes('read:members')) { setReadMembersScope(true) }
       } catch (e) {
         console.log(e.message)
       }
     }
-
     getUserNavPerm()
   }, [getAccessTokenSilently, user?.sub])
 
@@ -107,9 +104,7 @@ function Members () {
       try {
         const accessToken = await getAccessTokenSilently()
 
-        console.log(jwtDecode(accessToken))
-
-        const data = await fetch('https://rewards.smokeywarez.com/api/v1/members', {
+        const data = await fetch(`${process.env.REACT_APP_API_AUDIENCE}/members`, {
           headers: {
             Authorization: `Bearer ${accessToken}`
           }
@@ -123,6 +118,7 @@ function Members () {
 
     getMembers()
   }, [getAccessTokenSilently, user?.sub])
+
   return (
     <div>
       <h2>Who are we?</h2>
