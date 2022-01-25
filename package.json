@@ -1,6 +1,9 @@
 {
   "name": "rewardsapp",
   "version": "0.1.0",
+  "engines": {
+    "node": "14.x"
+  },
   "private": true,
   "dependencies": {
     "@auth0/auth0-react": "^1.9.0",
