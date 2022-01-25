@@ -104,7 +104,7 @@ function Members () {
       try {
         const accessToken = await getAccessTokenSilently()
 
-        const data = await fetch(`${process.env.REACT_APP_API_AUDIENCE}/members`, {
+        const data = await fetch(`${process.env.REACT_APP_AUTH_API_AUDIENCE}/members`, {
           headers: {
             Authorization: `Bearer ${accessToken}`
           }
@@ -115,7 +115,6 @@ function Members () {
         console.log(e.message)
       }
     }
-
     getMembers()
   }, [getAccessTokenSilently, user?.sub])
 
