@@ -1,10 +1,14 @@
 require('make-promises-safe')
 const path = require('path')
 
+const httpsRedirect = require('fastify-https-redirect')
+
 // CommonJs
 const fastify = require('fastify')({
   logger: true
 })
+
+fastify.register(httpsRedirect)
 
 fastify.register(require('fastify-static'), {
   root: path.resolve(__dirname, '../', 'build')
