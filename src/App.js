@@ -18,7 +18,10 @@ function App () {
   useEffect(() => {
     const getUserNavPerm = async () => {
       try {
-        const accessToken = await getAccessTokenSilently()
+        const accessToken = await getAccessTokenSilently({
+          audience: process.env.AUTH_API_AUDIENCE,
+          scope: 'read:members'
+        })
 
         console.log(jwtDecode(accessToken))
 
@@ -106,7 +109,7 @@ function Members () {
     const getMembers = async () => {
       try {
         const accessToken = await getAccessTokenSilently({
-          audience: 'https://rewards/smokeywarez.com/api/v1',
+          audience: process.env.AUTH_API_AUDIENCE,
           scope: 'read:members'
         })
 

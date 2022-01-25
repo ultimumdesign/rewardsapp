@@ -3,7 +3,7 @@ const environments = {}
 
 environments.production = {
   authprovider: {
-    audience: process.env.AUTH_AUDIENCE,
+    audience: `https://${process.env.AUTH_DOMAIN}/api/v2/`,
     domain: process.env.AUTH_DOMAIN,
     secret: process.env.AUTH_SECRET,
     api_audience: process.env.AUTH_API_AUDIENCE
@@ -20,3 +20,5 @@ const environmentToExport = typeof environments[currentEnvironment] === 'object'
 
 // export the module
 module.exports = environmentToExport
+audience=}
+scope='read:current_user update:current_user_metadata'

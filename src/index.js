@@ -13,8 +13,6 @@ ReactDOM.render(
       domain={domain}
       clientId='QIWbjTPIoaCgxdRmTWTfbBwougcwnpZB'
       redirectUri={window.location.origin}
-      audience={`https://${domain}/api/v2/`}
-      scope='read:current_user update:current_user_metadata'
     >
       <BrowserRouter>
         <App />
