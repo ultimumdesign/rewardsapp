@@ -6,15 +6,14 @@ import App from './App'
 import reportWebVitals from './reportWebVitals'
 import { Auth0Provider } from '@auth0/auth0-react'
 
-const domain = 'dev-meerxp4s.us.auth0.com'
 ReactDOM.render(
   <React.StrictMode>
     <Auth0Provider
-      domain={domain}
-      audience='https://rewards.smokeywarez.com/api/v1'
-      clientId='QIWbjTPIoaCgxdRmTWTfbBwougcwnpZB'
+      domain={process.env.REACT_APP_AUTH_DOMAIN}
+      audience={process.env.REACT_APP_AUTH_API_AUDIENCE}
+      clientId={process.env.REACT_APP_AUTH_CLIENT_ID}
       redirectUri={window.location.origin}
-      scope='read:current_user update:current_user_metadata read:members'
+      scope={process.env.REACT_APP_AUTH_SCOPES}
     >
       <BrowserRouter>
         <App />
