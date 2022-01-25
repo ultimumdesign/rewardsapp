@@ -10,7 +10,6 @@ environments.production = {
   },
   env: 'production'
 }
-
 // Determine which environment was passed as a command-line argument
 const currentEnvironment = typeof process.env.NODE_ENV === 'string' ? process.env.NODE_ENV.toLowerCase() : ''
 
@@ -20,5 +19,3 @@ const environmentToExport = typeof environments[currentEnvironment] === 'object'
 
 // export the module
 module.exports = environmentToExport
-audience=}
-scope='read:current_user update:current_user_metadata'
