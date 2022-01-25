@@ -1,3 +1,4 @@
+import fetch from 'node-fetch'
 import jwtDecode from 'jwt-decode'
 import { useAuth0 } from '@auth0/auth0-react'
 import { useEffect, useState } from 'react'
@@ -104,13 +105,13 @@ function Members () {
       try {
         const accessToken = await getAccessTokenSilently()
 
-        const data = await fetch(`${process.env.REACT_APP_AUTH_API_AUDIENCE}/members`, {
+        const response = await fetch(`${process.env.REACT_APP_AUTH_API_AUDIENCE}/members`, {
           headers: {
             Authorization: `Bearer ${accessToken}`
           }
         })
 
-        setMembersData(data)
+        setMembersData(response.json())
       } catch (e) {
         console.log(e.message)
       }
