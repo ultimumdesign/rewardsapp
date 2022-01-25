@@ -5,7 +5,7 @@ module.exports = function (fastify, _opts, done) {
       if (request.user.permissions.includes['read:members']) {
         fastify.log.info('MEMBERS ONLY')
         reply.send({ name: 'hello' })
-      }
+      } else reply.send({ error: '' })
     },
     preValidation: fastify.authenticate
   })

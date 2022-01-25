@@ -21,7 +21,7 @@ fastify.register(require('fastify-auth0-verify'), {
   secret: config.authprovider.secret
 })
 
-fastify.register(members, { prefix: 'api/v1' })
+fastify.register(members, { prefix: '/api/v1' })
 
 fastify.get('/', async (request, reply) => {
   if (config.env === 'production' && request.headers['x-forwarded-proto'] !== 'https') {
