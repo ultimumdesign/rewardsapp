@@ -18,10 +18,7 @@ function App () {
   useEffect(() => {
     const getUserNavPerm = async () => {
       try {
-        const accessToken = await getAccessTokenSilently({
-          audience: 'https://rewards.smokeywarez.com/api/v1',
-          scope: 'read:members'
-        })
+        const accessToken = await getAccessTokenSilently()
 
         console.log(jwtDecode(accessToken))
 
@@ -108,20 +105,17 @@ function Members () {
   useEffect(() => {
     const getMembers = async () => {
       try {
-        const accessToken = await getAccessTokenSilently({
-          audience: process.env.AUTH_API_AUDIENCE,
-          scope: 'read:members'
-        })
+        const accessToken = await getAccessTokenSilently()
 
         console.log(jwtDecode(accessToken))
 
-        // const data = await fetch('https://rewards.smokeywarez.com/api/v1/members', {
-        //   headers: {
-        //     Authorization: `Bearer ${accessToken}`
-        //   }
-        // })
+        const data = await fetch('https://rewards.smokeywarez.com/api/v1/members', {
+          headers: {
+            Authorization: `Bearer ${accessToken}`
+          }
+        })
 
-        setMembersData([])
+        setMembersData(data)
       } catch (e) {
         console.log(e.message)
       }

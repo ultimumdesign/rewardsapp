@@ -11,8 +11,10 @@ ReactDOM.render(
   <React.StrictMode>
     <Auth0Provider
       domain={domain}
+      audience='https://rewards.smokeywarez.com/api/v1'
       clientId='QIWbjTPIoaCgxdRmTWTfbBwougcwnpZB'
       redirectUri={window.location.origin}
+      scope='read:current_user update:current_user_metadata read:members'
     >
       <BrowserRouter>
         <App />
