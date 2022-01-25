@@ -12,7 +12,6 @@ fastify.register(require('fastify-static'), {
 
 fastify.get('/', async (request, reply) => {
   if (process.env.NODE_ENV === 'production' && request.headers['x-forwarded-proto'] !== 'https') {
-    console.log(request.headers)
     reply.redirect(`https://${request.hostname}${request.url}`)
   } else { reply.sendFile('index.html') }
 })
