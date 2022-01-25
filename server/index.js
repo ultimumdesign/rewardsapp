@@ -1,8 +1,6 @@
 require('make-promises-safe')
 const path = require('path')
 
-const httpsRedirect = require('fastify-https-redirect')
-
 // CommonJs
 const fastify = require('fastify')({
   logger: true
@@ -13,7 +11,18 @@ fastify.register(require('fastify-static'), {
 })
 
 fastify.get('/', async (request, reply) => {
-  reply.sendFile('index.html')
+  if (process.env.NODE_ENV === 'production' && request.headers['x-forwarded-proto'] !== 'https') {
+    request.redirect(`https://${request.hostname}${request.url}`)
+  } else { reply.sendFile('index.html') }
 })
 
-fastify.register(httpsRedirect, { httpPort: process.env.PORT })
+const start = async () => {
+  try {
+    const port = process.env.PORT
+    await fastify.listen(port, '0.0.0.0')
+  } catch (err) {
+    fastify.log.error(err)
+    process.exit(1)
+  }
+}
+start()
