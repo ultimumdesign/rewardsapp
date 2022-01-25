@@ -1,6 +1,9 @@
 import { Container, Navbar, Nav } from 'react-bootstrap'
 import { LinkContainer } from 'react-router-bootstrap'
 import { Routes, Route } from 'react-router-dom'
+
+import LoginButton from './components/loginButton'
+
 import 'bootstrap/dist/css/bootstrap.min.css'
 
 function App () {
@@ -30,6 +33,7 @@ function Home () {
     <main>
       <h2>Welcome to the homepage!</h2>
       <p>You can do this, I believe in you.</p>
+      <LoginButton />
     </main>
   )
 }
