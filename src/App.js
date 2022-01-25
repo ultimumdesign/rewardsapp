@@ -1,8 +1,6 @@
-import jwt_decode from 'jwt-decode'
+import jwtDecode from 'jwt-decode'
 import { useAuth0 } from '@auth0/auth0-react'
 import { useEffect, useState } from 'react'
-
-import fetch from 'node-fetch'
 
 import { Container, Navbar, Nav } from 'react-bootstrap'
 import { LinkContainer } from 'react-router-bootstrap'
@@ -22,7 +20,7 @@ function App () {
       try {
         const accessToken = await getAccessTokenSilently()
 
-        console.log(jwt_decode(accessToken))
+        console.log(jwtDecode(accessToken))
 
         setReadMembersScope(true)
       } catch (e) {
@@ -112,15 +110,15 @@ function Members () {
           scope: 'read:members'
         })
 
-        console.log(jwt_decode(accessToken))
+        console.log(jwtDecode(accessToken))
 
-        const data = await fetch('https://rewards.smokeywarez.com/api/v1/members', {
-          headers: {
-            Authorization: `Bearer ${accessToken}`
-          }
-        })
+        // const data = await fetch('https://rewards.smokeywarez.com/api/v1/members', {
+        //   headers: {
+        //     Authorization: `Bearer ${accessToken}`
+        //   }
+        // })
 
-        setMembersData(data)
+        setMembersData([])
       } catch (e) {
         console.log(e.message)
       }
