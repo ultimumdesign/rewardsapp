@@ -1,5 +1,5 @@
 require('make-promises-safe')
-require('dotenv').config()
+
 const path = require('path')
 
 const config = require('./config')
