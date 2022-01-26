@@ -33,13 +33,6 @@ function App () {
       <Navbar bg='light' expand='lg'>
         <LinkContainer to='/'>
           <Navbar.Brand>Smokey Warez Rewards</Navbar.Brand>
-          <img
-            alt=''
-            src={process.env.REACT_APP_LOGO_URL}
-            width='30'
-            height='30'
-            className='d-inline-block align-top'
-          />
         </LinkContainer>
         <Navbar.Toggle />
         <Navbar.Collapse>
