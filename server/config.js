@@ -1,4 +1,4 @@
-// Container for all environments
+require('dotenv').config()
 const environments = {}
 
 environments.production = {
@@ -8,7 +8,8 @@ environments.production = {
     secret: process.env.AUTH_SECRET,
     api_audience: process.env.AUTH_API_AUDIENCE
   },
-  env: 'production'
+  env: 'production',
+  dbString: process.env.DATABASE_URL
 }
 // Determine which environment was passed as a command-line argument
 const currentEnvironment = typeof process.env.NODE_ENV === 'string' ? process.env.NODE_ENV.toLowerCase() : ''

@@ -33,6 +33,13 @@ function App () {
       <Navbar bg='light' expand='lg'>
         <LinkContainer to='/'>
           <Navbar.Brand>Smokey Warez Rewards</Navbar.Brand>
+          <img
+            alt=''
+            src={process.env.REACT_APP_LOGO_URL}
+            width='30'
+            height='30'
+            className='d-inline-block align-top'
+          />
         </LinkContainer>
         <Navbar.Toggle />
         <Navbar.Collapse>
@@ -60,7 +67,6 @@ function App () {
   )
 }
 
-// App.js
 function Home () {
   return (
     <main>
@@ -84,7 +90,6 @@ function Profile () {
           <img src={user.picture} alt={user.name} />
           <h2>{user.name}</h2>
           <p>{user.email}</p>
-          <p>{JSON.stringify(user)}</p>
         </div>
         )
       : (
@@ -103,7 +108,7 @@ function Members () {
     const getMembers = async () => {
       try {
         const accessToken = await getAccessTokenSilently()
-
+        // eslint-disable-next-line no-undef
         const response = await fetch(`${process.env.REACT_APP_AUTH_API_AUDIENCE}/members`, {
           headers: {
             Authorization: `Bearer ${accessToken}`
@@ -120,7 +125,7 @@ function Members () {
 
   return (
     <div>
-      <h2>Who are we?</h2>
+      <h2>Members</h2>
       <p>{JSON.stringify(membersData)}
       </p>
     </div>

@@ -4,7 +4,7 @@ const path = require('path')
 
 const config = require('./config')
 
-const members = require('./routes/v1/members')
+const members = require('./api/v1/members')
 
 // CommonJs
 const fastify = require('fastify')({
