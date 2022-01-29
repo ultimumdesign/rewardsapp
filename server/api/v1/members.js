@@ -1,8 +1,14 @@
-// routes/v1/users.js
 module.exports = function (fastify, _opts, done) {
   fastify.get('/members', {
-    handler: function (request, reply) {
-      if (request.user.permissions.includes('read:members')) { reply.send([{ name: 'test' }]) }
+    handler (request, reply) {
+      if (request.user.permissions.includes('read:members')) {
+        try {
+          const data = [{ first_name: 'test', last_name: 'user', points: 0 }]
+          reply.send(data)
+        } catch (e) {
+          console.error(e)
+        }
+      }
     },
     preValidation: fastify.authenticate
   })
