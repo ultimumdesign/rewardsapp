@@ -1,6 +1,5 @@
 const PaymentsHubApi = require('../integrations/paymentshub')
 const db = require('../db')
-const { default: knex } = require('knex')
 
 module.exports = {
   id: 'task-sync-paymentshub-members',
