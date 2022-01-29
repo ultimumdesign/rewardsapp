@@ -6,7 +6,7 @@ const config = require('./config')
 
 const members = require('./api/v1/members')
 
-const taskRunner = require('./runner')
+// const taskRunner = require('./runner')
 
 // CommonJs
 const fastify = require('fastify')({
@@ -33,7 +33,7 @@ fastify.get('/', async (request, reply) => {
 
 const start = async () => {
   try {
-    taskRunner.start()
+    // taskRunner.start()
     await fastify.listen(process.env.PORT, '0.0.0.0')
   } catch (err) {
     fastify.log.error(err)
