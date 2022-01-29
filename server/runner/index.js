@@ -1,5 +1,4 @@
-
-const TaskTimer = require('tasktimer')
+const { TaskTimer } = require('tasktimer')
 
 // const processRewards = require('./processRewards')
 const syncMembers = require('./syncMembers')
