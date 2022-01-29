@@ -21,7 +21,7 @@ module.exports = {
           })
         if (!results.length) {
           // insert new record
-          await knex('members')
+          return knex('members')
             .insert({
               first_name: member.first_name,
               last_name: member.last_name,
