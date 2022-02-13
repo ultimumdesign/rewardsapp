@@ -33,7 +33,7 @@ class PaymentsHubApi {
       const response = await this.axios.get(`/api/users/accounts/${this.accountId}/customers`,
         {
           headers: {
-            Authorization: `Bear ${this.token}`
+            Authorization: `Bearer ${this.token}`
           },
           params
         }
@@ -50,7 +50,7 @@ class PaymentsHubApi {
       const response = await this.axios.get(`/api/users/accounts/${this.accountId}/transactions`,
         {
           headers: {
-            Authorization: `Bear ${this.token}`
+            Authorization: `Bearer ${this.token}`
           },
           params
         }
