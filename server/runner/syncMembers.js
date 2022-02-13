@@ -11,7 +11,6 @@ module.exports = {
     const api = new PaymentsHubApi()
     try {
       const members = await api.getMembers()
-      console.log(members)
       for (const member in members) {
         const results = await db
           .from('members')
@@ -21,6 +20,7 @@ module.exports = {
           })
         if (!results.length) {
           // insert new record
+          console.log(`adding ${member.id}`)
           return db('members')
             .insert({
               first_name: member.first_name,
