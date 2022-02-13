@@ -11,7 +11,6 @@ module.exports = {
     const api = new PaymentsHubApi()
     try {
       const members = await api.getMembers()
-      console.log(members)
       for (const member in members) {
         const results = await db
           .from('members')

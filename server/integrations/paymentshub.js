@@ -5,7 +5,7 @@ const config = require('../config')
 
 class PaymentsHubApi {
   constructor () {
-    this.accountId = config.ph.accountId
+    this.accountId = config.integrations.ph.accountId
     this.token = null
     this.axios = axios.create({
       baseURL: 'https://www.paymentshub.com',
@@ -17,8 +17,8 @@ class PaymentsHubApi {
     try {
       const response = await this.axios.post('/api/users/create-session',
         querystring.stringify({
-          username: config.ph.username,
-          password: config.ph.password
+          username: config.integrations.ph.username,
+          password: config.integrations.ph.password
         })
       )
       this.token = response.data.token
