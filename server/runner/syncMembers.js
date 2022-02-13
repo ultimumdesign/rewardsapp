@@ -21,7 +21,7 @@ module.exports = {
         if (!results.length) {
           // insert new record
           console.log(`adding ${members[i].id}`)
-          return db('members')
+          await db('members')
             .insert({
               first_name: members[i].first_name,
               last_name: members[i].last_name,
