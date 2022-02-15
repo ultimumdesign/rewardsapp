@@ -45,7 +45,7 @@ class PaymentsHubApi {
   }
 
   async getTransactions (params = {}) {
-    this.login()
+    await this.login()
     try {
       const response = await this.axios.get(`/api/users/accounts/${this.accountId}/transactions`,
         {
