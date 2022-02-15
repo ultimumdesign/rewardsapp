@@ -3,7 +3,7 @@ const db = require('../db')
 
 module.exports = {
   id: 'task-process-paymentshub-rewards',
-  tickInterval: 60,
+  tickInterval: 120,
   totalRuns: 0,
   async callback (task) {
     // code to be executed on each run
