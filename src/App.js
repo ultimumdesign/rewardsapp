@@ -129,19 +129,13 @@ function Members () {
       <Table responsive>
         <thead>
           <tr>
-            {Object.keys(membersData[0]).map((col, index) => (
-              <th key={index}>{col}</th>
-            ))}
+            <th />
           </tr>
         </thead>
         <tbody>
-          {membersData.map((member, index) => {
-            return (
-              <tr key={index}>
-                {Object.keys(member[index]).map((prop, i) => <td key={i}>member[prop]</td>)}
-              </tr>
-            )
-          })}
+          <tr>
+            <td />
+          </tr>
         </tbody>
       </Table>
     </div>
