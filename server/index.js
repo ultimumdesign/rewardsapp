@@ -4,6 +4,8 @@ const path = require('path')
 
 const config = require('./config')
 
+const { dbPlugin } = require('./db')
+
 const members = require('./api/v1/members')
 
 const taskRunner = require('./runner')
@@ -12,6 +14,8 @@ const taskRunner = require('./runner')
 const fastify = require('fastify')({
   logger: true
 })
+
+fastify.register(dbPlugin)
 
 fastify.register(require('fastify-static'), {
   root: path.resolve(__dirname, '../', 'build')

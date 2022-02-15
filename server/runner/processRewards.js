@@ -17,15 +17,13 @@ module.exports = {
       const endDayIso = today.toJSON().slice(0, 10)
 
       const transactions = await api.getTransactions({ start: startDayIso, end: endDayIso })
-      console.log(transactions)
-      for (const i in transactions) {
-        const uniqueId = transactions[i].uniq_id
 
+      for (const i in transactions) {
         const results = await db
           .from('reward_actions')
           .select()
           .where({
-            action_id: uniqueId
+            action_id: transactions[i].uniq_id
           })
         if (!results.length) {
           // get rules
@@ -39,7 +37,7 @@ module.exports = {
             const ruleCalc = rules.reduce((prev, curr) => {
               const ruleAssessment = transactions[i][curr.rule_field] >= curr.rule_assertion_value
               if (ruleAssessment) {
-                prev.points_awarded += curr.points_required
+                prev.points_awarded += transactions[i][curr.rule_field] / curr.rule_assertion_value * curr.points_required
               } else prev.pass = false
               return prev
             }, { pass: true, points_awarded: 0 })
