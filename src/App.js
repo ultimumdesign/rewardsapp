@@ -136,10 +136,9 @@ function Members () {
         </thead>
         <tbody>
           {membersData.map((member, index) => {
-            const colData = Object.keys(membersData[index]).map((prop, i) => (<td key={i}>membersData[i][prop]</td>))
             return (
               <tr key={index}>
-                {colData}
+                {Object.keys(member[index]).map((prop, i) => <td key={i}>member[prop]</td>)}
               </tr>
             )
           })}
