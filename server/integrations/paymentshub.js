@@ -28,7 +28,7 @@ class PaymentsHubApi {
   }
 
   async getMembers (params = {}) {
-    if (!this.token) await this.login()
+    await this.login()
     try {
       const response = await this.axios.get(`/api/users/accounts/${this.accountId}/customers`,
         {
@@ -45,7 +45,7 @@ class PaymentsHubApi {
   }
 
   async getTransactions (params = {}) {
-    if (!this.token) this.login()
+    this.login()
     try {
       const response = await this.axios.get(`/api/users/accounts/${this.accountId}/transactions`,
         {
