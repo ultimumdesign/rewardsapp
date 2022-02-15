@@ -1,9 +1,11 @@
+const db = require('../../db')
+
 module.exports = function (fastify, _opts, done) {
   fastify.get('/members', {
     async handler (request, reply) {
       if (request.user.permissions.includes('read:members')) {
         try {
-          const data = await fastify.db
+          const data = await db
             .from('members')
             .select()
           reply.send(data)
