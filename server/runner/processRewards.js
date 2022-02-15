@@ -17,10 +17,10 @@ module.exports = {
       const endDayIso = today.toJSON().slice(0, 10)
 
       const transactions = await api.getTransactions({ start: startDayIso, end: endDayIso })
-
+      console.log(transactions)
       for (const i in transactions) {
         const uniqueId = transactions[i].uniq_id
-        console.log(uniqueId)
+
         const results = await db
           .from('reward_actions')
           .select()
