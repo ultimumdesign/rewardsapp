@@ -2,7 +2,7 @@ import jwtDecode from 'jwt-decode'
 import { useAuth0 } from '@auth0/auth0-react'
 import { useEffect, useState } from 'react'
 
-import { Container, Navbar, Nav } from 'react-bootstrap'
+import { Container, Navbar, Nav, Table } from 'react-bootstrap'
 import { LinkContainer } from 'react-router-bootstrap'
 import { Routes, Route } from 'react-router-dom'
 
@@ -126,8 +126,25 @@ function Members () {
   return (
     <div>
       <h2>Members</h2>
-      <p>{JSON.stringify(membersData)}
-      </p>
+      <Table responsive>
+        <thead>
+          <tr>
+            {Object.keys(membersData[0]).map((col, index) => (
+              <th key={index}>{col}</th>
+            ))}
+          </tr>
+        </thead>
+        <tbody>
+          {membersData.map((member, index) => {
+            const colData = Object.keys(membersData[index]).map((prop, i) => (<td key={i}>membersData[index][prop]</td>))
+            return (
+              <tr key={index}>
+                {colData}
+              </tr>
+            )
+          })}
+        </tbody>
+      </Table>
     </div>
   )
 }
