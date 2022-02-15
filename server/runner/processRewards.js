@@ -19,11 +19,13 @@ module.exports = {
       const transactions = await api.getTransactions({ start: startDayIso, end: endDayIso })
 
       for (const i in transactions) {
+        const uniqueId = transactions[i].uniq_id
+        console.log(uniqueId)
         const results = await db
           .from('reward_actions')
           .select()
           .where({
-            action_id: transactions[i].uniq_id
+            action_id: uniqueId
           })
         if (!results.length) {
           // get rules
