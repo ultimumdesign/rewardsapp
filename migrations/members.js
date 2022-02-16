@@ -2,7 +2,7 @@ exports.up = function (knex, Promise) {
   return knex.schema.createTable('members', function (table) {
     table.increments()
     table.timestamps(true, true)
-    table.json('email')
+    table.text('email')
     table.string('first_name')
     table.string('last_name')
     table.string('updated_by')
