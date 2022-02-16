@@ -12,24 +12,22 @@ module.exports = {
     try {
       const members = await api.getMembers()
       for (const i in members) {
-        if (members[i].phone_number || members[i].email_addresses.length) {
-          const results = await db
-            .from('members')
-            .select()
-            .where({
-              src_id: members[i].id
-            })
-          if (!results.length) {
+        const results = await db
+          .from('members')
+          .select()
+          .where({
+            src_id: members[i].id
+          })
+        if (!results.length) {
           // insert new record
-            await db('members')
-              .insert({
-                first_name: members[i].first_name,
-                last_name: members[i].last_name,
-                src_id: members[i].id,
-                email: members[i].email_addresses.join(),
-                phone: members[i].phone_number
-              })
-          }
+          await db('members')
+            .insert({
+              first_name: members[i].first_name,
+              last_name: members[i].last_name,
+              src_id: members[i].id,
+              email: members[i].email_addresses.join(),
+              phone: members[i].phone_number
+            })
         }
       }
     } catch (e) {
