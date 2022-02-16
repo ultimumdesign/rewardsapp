@@ -123,15 +123,13 @@ function Members () {
     getMembers()
   }, [getAccessTokenSilently, user?.sub])
 
-  const tableHeaders = Object.keys(membersData[0])
-
   return (
     <div>
       <h2>Members</h2>
       <Table responsive>
         <thead>
           <tr>
-            {tableHeaders}
+            {Object.keys(membersData[0])}
           </tr>
         </thead>
         <tbody>
