@@ -133,9 +133,7 @@ function Members () {
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td />
-          </tr>
+          {membersData.length ? membersData.map((member, i) => <tr key={i}> {Object.keys(member[i]).map((key, ix) => <td key={ix}>{member[i][key]}</td>)}</tr>) : <th />}
         </tbody>
       </Table>
     </div>
