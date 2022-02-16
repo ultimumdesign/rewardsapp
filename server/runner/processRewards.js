@@ -30,12 +30,11 @@ module.exports = {
             action_id: transactionsFiltered[i].uniq_id
           })
         if (!results.length) {
-          const currentCustomer = await db
+          const currentMember = await db
             .from('members')
             .select()
             .where({ src_id: transactionsFiltered[i].customer_id })
-          const isCustomerEmailValid = (currentCustomer[0].email_addresses.length >= 1 && currentCustomer[0].email_addresses[0] !== 'null')
-          if (currentCustomer[0].phone_number || isCustomerEmailValid) {
+          if (currentMember[0].phone_number || currentMember[0].email) {
             const rules = await db
               .from('rewards_catalog')
               .select()
