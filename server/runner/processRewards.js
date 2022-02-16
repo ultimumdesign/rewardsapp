@@ -18,7 +18,11 @@ module.exports = {
 
       const transactions = await api.getTransactions({ start: startDayIso, end: endDayIso })
 
-      for (const i in transactions) {
+      const transactionsFiltered = transactions.filter(trans => {
+        return !!trans.customer_id
+      })
+
+      for (const i in transactionsFiltered) {
         const results = await db
           .from('reward_actions')
           .select()
@@ -26,8 +30,11 @@ module.exports = {
             action_id: transactions[i].uniq_id
           })
         if (!results.length) {
-          // get rules
-          if (transactions[i].customer_id) {
+          const currentCustomer = await db
+            .from('members')
+            .select()
+            .where({ src_id: transactions[i].customer_id })
+          if (currentCustomer[0].phone_number || currentCustomer[0].email_addresses.length) {
             const rules = await db
               .from('rewards_catalog')
               .select()
