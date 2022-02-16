@@ -8,6 +8,8 @@ module.exports = function (fastify, _opts, done) {
           const data = await db
             .from('members')
             .select()
+            .whereNotNull('phone')
+            .orWhereNotNull('email')
           reply.send(data)
         } catch (e) {
           console.error(e)
