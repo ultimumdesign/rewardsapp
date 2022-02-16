@@ -123,7 +123,7 @@ function Members () {
     getMembers()
   }, [getAccessTokenSilently, user?.sub])
 
-  const tableHeaders = Object.keys(membersData[0]).map((prop, i) => <th key={i}>{prop}</th>)
+  const tableHeaders = Object.keys(membersData[0])
 
   return (
     <div>
