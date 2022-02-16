@@ -102,7 +102,7 @@ function Profile () {
 
 function Members () {
   const { user, getAccessTokenSilently } = useAuth0()
-  const [membersData, setMembersData] = useState(null)
+  const [membersData, setMembersData] = useState([])
 
   useEffect(() => {
     const getMembers = async () => {
@@ -129,7 +129,7 @@ function Members () {
       <Table responsive>
         <thead>
           <tr>
-            {Object.keys(membersData[0])}
+            {membersData.length ? Object.keys(membersData[0]).map((prop, i) => <th key={i}>{prop}</th>) : <th />}
           </tr>
         </thead>
         <tbody>
