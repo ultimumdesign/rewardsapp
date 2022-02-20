@@ -132,7 +132,7 @@ function Members () {
 
   function filterArray (value, array) {
     const searcher = new JsonSearch(array)
-    return searcher.query(`"${value}"`)
+    return searcher.query(`${value}`)
   }
 
   const membersTableHeaders = membersDataCols.length
@@ -156,6 +156,7 @@ function Members () {
       <Form.Control
         type='text' placeholder='Search' value={membersDataFilter} onChange={(e) => {
           const value = e.target.value
+          console.log(value)
           setMembersDataFilter(value)
           if (value) {
             setMembersDataClone(filterArray(value, membersData))
