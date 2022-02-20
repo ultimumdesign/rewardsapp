@@ -107,7 +107,7 @@ function Members () {
   const { user, getAccessTokenSilently } = useAuth0()
   const [membersData, setMembersData] = useState([])
   const [membersDataCols] = useState(['first_name', 'last_name', 'email', 'phone'])
-  const [membersDataFilter] = useState('')
+  const [membersDataFilter, setMembersDataFilter] = useState('')
 
   useEffect(() => {
     const getMembers = async () => {
@@ -151,7 +151,13 @@ function Members () {
   return (
     <div>
       <h2>Members</h2>
-      <Form.Control type='text' placeholder='Search' value={membersDataFilter} onChange={(e) => filterArray(e.target.value, membersData)} />
+      <Form.Control
+        type='text' placeholder='Search' value={membersDataFilter} onChange={(e) => {
+          const value = e.target.value
+          setMembersDataFilter(value)
+          filterArray(value, membersData)
+        }}
+      />
       <Table responsive>
         <thead>
           <tr>
