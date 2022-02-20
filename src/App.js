@@ -60,8 +60,10 @@ function App () {
         </Navbar.Collapse>
       </Navbar>
       <Routes>
-        <Route path='/' element={<Home />} />
-        <Route path='members' element={<Members />} />
+        <Container>
+          <Route path='/' element={<Home />} />
+          <Route path='members' element={<Members />} />
+        </Container>
       </Routes>
     </Container>
   )
