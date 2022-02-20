@@ -131,8 +131,10 @@ function Members () {
   }, [getAccessTokenSilently, user?.sub])
 
   function filterArray (value, array) {
-    const searcher = new JsonSearch(array)
-    return searcher.query(`${value}`)
+    return array.filter(item => {
+      const re = new RegExp(`${value}*`)
+      return re.test(JSON.stringify(item))
+    })
   }
 
   const membersTableHeaders = membersDataCols.length
@@ -156,7 +158,6 @@ function Members () {
       <Form.Control
         type='text' placeholder='Search' value={membersDataFilter} onChange={(e) => {
           const value = e.target.value
-          console.log(value)
           setMembersDataFilter(value)
           if (value) {
             setMembersDataClone(filterArray(value, membersData))
