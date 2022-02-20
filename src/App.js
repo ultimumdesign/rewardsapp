@@ -106,8 +106,9 @@ function Profile () {
 function Members () {
   const { user, getAccessTokenSilently } = useAuth0()
   const [membersData, setMembersData] = useState([])
+  const [membersDataClone, setMembersDataClone] = useState([])
   const [membersDataCols] = useState(['first_name', 'last_name', 'email', 'phone'])
-  const [membersDataFilter, setMembersDataFilter] = useState('')
+  const [membersDataFilter, setMembersDataFilter] = useState(null)
 
   useEffect(() => {
     const getMembers = async () => {
@@ -130,7 +131,7 @@ function Members () {
 
   function filterArray (value, array) {
     const searcher = new JsonSearch(array)
-    setMembersData(searcher.query(value))
+    return searcher.query(value)
   }
 
   const membersTableHeaders = membersData.length
@@ -154,8 +155,10 @@ function Members () {
       <Form.Control
         type='text' placeholder='Search' value={membersDataFilter} onChange={(e) => {
           const value = e.target.value
-          setMembersDataFilter(value)
-          filterArray(value, membersData)
+          if (value) {
+            setMembersDataFilter(value)
+            setMembersDataClone(filterArray(value, membersData))
+          } else if (value === '') setMembersDataClone(membersData)
         }}
       />
       <Table responsive>
