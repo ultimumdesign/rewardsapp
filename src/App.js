@@ -129,7 +129,7 @@ function Members () {
 
   const membersTable = membersData.length
     ? membersData.map((member, i) => {
-        const cells = Object.keys(member).map((prop, ix) => <td key={ix}>member[i][prop]</td>)
+        const cells = Object.keys(member).map((prop, ix) => <td key={ix}>membersData[i][prop]</td>)
         return (
           <tr key={i}>
             <td>{cells}</td>
