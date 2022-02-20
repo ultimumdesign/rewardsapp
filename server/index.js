@@ -2,6 +2,8 @@ require('make-promises-safe')
 
 const path = require('path')
 
+const fastifyStatic = require('fastify-static')
+
 const config = require('./config')
 
 const members = require('./api/v1/members')
@@ -13,7 +15,7 @@ const fastify = require('fastify')({
   logger: true
 })
 
-fastify.register(require('fastify-static'), {
+fastify.register(fastifyStatic, {
   root: path.resolve(__dirname, '../', 'build')
 })
 
@@ -25,7 +27,7 @@ fastify.register(require('fastify-auth0-verify'), {
 
 fastify.register(members, { prefix: '/api/v1' })
 
-fastify.get('/', async (request, reply) => {
+fastify.get('/*', async (request, reply) => {
   if (config.env === 'production' && request.headers['x-forwarded-proto'] !== 'https') {
     reply.redirect(`https://${request.hostname}${request.url}`)
   } else { reply.sendFile('index.html') }

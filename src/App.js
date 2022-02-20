@@ -34,13 +34,13 @@ function App () {
       <Navbar bg='light' expand='lg'>
         <LinkContainer to='/'>
           <Navbar.Brand>Smokey Warez Rewards</Navbar.Brand>
-          {/* <img
+          <img
             src='/logo192.png'
             width='30'
             height='30'
             className='d-inline-block align-top'
             alt='Smokey Warez logo'
-          /> */}
+          />
         </LinkContainer>
         <Navbar.Toggle />
         <Navbar.Collapse>
@@ -134,12 +134,12 @@ function Members () {
     return searcher.query(value)
   }
 
-  const membersTableHeaders = membersData.length
+  const membersTableHeaders = membersDataCols.length
     ? membersDataCols.map((prop, i) => <th key={i}>{prop}</th>)
     : <th />
 
   const membersTable = membersData.length
-    ? membersData.map((member, i) => {
+    ? membersDataClone.map((member, i) => {
         const cells = membersDataCols.map((prop, ix) => <td key={ix}>{membersData[i][prop]}</td>)
         return (
           <tr key={i}>
