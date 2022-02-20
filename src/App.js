@@ -122,6 +122,7 @@ function Members () {
         })
         const body = await response.json()
         setMembersData(body)
+        setMembersDataClone(body)
       } catch (e) {
         console.log(e.message)
       }
