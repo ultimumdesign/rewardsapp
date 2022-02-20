@@ -7,9 +7,9 @@ module.exports = function (fastify, _opts, done) {
         try {
           const data = await db
             .from('members')
-            .select()
             .whereNotNull('phone')
-            .orWhereNotNull('email')
+            .orWhereNot('phone', '')
+            .orWhereNot('email', '')
           reply.send(data)
         } catch (e) {
           console.error(e)
