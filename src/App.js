@@ -1,8 +1,9 @@
+import JsonSearch from 'search-array'
 import jwtDecode from 'jwt-decode'
 import { useAuth0 } from '@auth0/auth0-react'
 import { useEffect, useState } from 'react'
 
-import { Container, Navbar, Nav, Table } from 'react-bootstrap'
+import { Container, Form, Navbar, Nav, Table } from 'react-bootstrap'
 import { LinkContainer } from 'react-router-bootstrap'
 import { Routes, Route } from 'react-router-dom'
 
@@ -105,6 +106,8 @@ function Profile () {
 function Members () {
   const { user, getAccessTokenSilently } = useAuth0()
   const [membersData, setMembersData] = useState([])
+  const [membersDataCols] = useState(['first_name', 'last_name', 'email', 'phone'])
+  const [membersDataFilter] = useState('')
 
   useEffect(() => {
     const getMembers = async () => {
@@ -125,13 +128,18 @@ function Members () {
     getMembers()
   }, [getAccessTokenSilently, user?.sub])
 
+  function filterArray (value, array) {
+    const searcher = new JsonSearch(array)
+    setMembersData(searcher.query(value))
+  }
+
   const membersTableHeaders = membersData.length
-    ? Object.keys(membersData[0]).map((prop, i) => <th key={i}>{prop}</th>)
+    ? membersDataCols.map((prop, i) => <th key={i}>{prop}</th>)
     : <th />
 
   const membersTable = membersData.length
     ? membersData.map((member, i) => {
-        const cells = Object.keys(member).map((prop, ix) => <td key={ix}>{membersData[i][prop]}</td>)
+        const cells = membersDataCols.map((prop, ix) => <td key={ix}>{membersData[i][prop]}</td>)
         return (
           <tr key={i}>
             {cells}
@@ -143,6 +151,7 @@ function Members () {
   return (
     <div>
       <h2>Members</h2>
+      <Form.Control type='text' placeholder='Search' value={membersDataFilter} onChange={(e) => filterArray(e.target.value, membersData)} />
       <Table responsive>
         <thead>
           <tr>
