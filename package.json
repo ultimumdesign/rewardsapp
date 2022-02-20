@@ -27,7 +27,6 @@
     "react-router-bootstrap": "^0.26.0",
     "react-router-dom": "^6.2.1",
     "react-scripts": "5.0.0",
-    "search-array": "^1.4.1",
     "tasktimer": "^3.0.0",
     "web-vitals": "^2.1.4"
   },

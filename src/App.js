@@ -1,4 +1,4 @@
-import JsonSearch from 'search-array'
+
 import jwtDecode from 'jwt-decode'
 import { useAuth0 } from '@auth0/auth0-react'
 import { useEffect, useState } from 'react'
@@ -132,7 +132,7 @@ function Members () {
 
   function filterArray (value, array) {
     return array.filter(item => {
-      const re = new RegExp(`${value}*`)
+      const re = new RegExp(`${value}*`, 'i')
       return re.test(JSON.stringify(item))
     })
   }
