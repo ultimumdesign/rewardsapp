@@ -156,8 +156,8 @@ function Members () {
       <Form.Control
         type='text' placeholder='Search' value={membersDataFilter} onChange={(e) => {
           const value = e.target.value
+          setMembersDataFilter(value)
           if (value) {
-            setMembersDataFilter(value)
             setMembersDataClone(filterArray(value, membersData))
           } else if (value === '') setMembersDataClone(membersData)
         }}
