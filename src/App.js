@@ -123,16 +123,33 @@ function Members () {
     getMembers()
   }, [getAccessTokenSilently, user?.sub])
 
+  const membersTableHeaders = membersData.length
+    ? Object.keys(membersData[0]).map((prop, i) => <th key={i}>{prop}</th>)
+    : <th />
+
+  const membersTable = membersData.length
+    ? membersData.map((member, i) => {
+        const cells = Object.keys(member).map((prop, ix) => <td key={ix}>member[i][prop]</td>)
+        return (
+          <tr key={i}>
+            <td>{cells}</td>
+          </tr>
+        )
+      })
+    : 'false'
+
   return (
     <div>
       <h2>Members</h2>
       <Table responsive>
         <thead>
           <tr>
-            {membersData.length ? Object.keys(membersData[0]).map((prop, i) => <th key={i}>{prop}</th>) : <th />}
+            {membersTableHeaders}
           </tr>
         </thead>
-        <tbody />
+        <tbody>
+          {membersTable}
+        </tbody>
       </Table>
     </div>
   )
