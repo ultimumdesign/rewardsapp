@@ -27,13 +27,7 @@ fastify.register(require('fastify-auth0-verify'), {
 
 fastify.register(members, { prefix: '/api/v1' })
 
-fastify.get('/', async (request, reply) => {
-  if (config.env === 'production' && request.headers['x-forwarded-proto'] !== 'https') {
-    reply.redirect(`https://${request.hostname}${request.url}`)
-  } else { reply.sendFile('index.html') }
-})
-
-fastify.get('/*', async (request, reply) => {
+fastify.get('*', async (request, reply) => {
   if (config.env === 'production' && request.headers['x-forwarded-proto'] !== 'https') {
     reply.redirect(`https://${request.hostname}${request.url}`)
   } else { reply.sendFile('index.html') }
