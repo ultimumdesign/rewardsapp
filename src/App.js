@@ -136,7 +136,7 @@ function Members () {
           </tr>
         )
       })
-    : 'false'
+    : <tr />
 
   return (
     <div>
