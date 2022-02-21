@@ -131,8 +131,8 @@ function Members () {
 
   function filterArray (value, array) {
     return array.filter(item => {
-      const re = new RegExp(`${value}*`, 'i')
-      const test = re.test(item.phone) || re.test(item.email)
+      const re = new RegExp(`${value}*`)
+      const test = re.test(item.phone.toLowerCase()) || re.test(item.email.toLowerCase())
       return test
     })
   }
