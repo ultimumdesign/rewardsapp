@@ -108,7 +108,6 @@ function Members () {
   const [membersData, setMembersData] = useState([])
   const [membersDataClone, setMembersDataClone] = useState([])
   const [membersDataCols] = useState(['first_name', 'last_name', 'email', 'phone'])
-  const [membersDataFilter, setMembersDataFilter] = useState(null)
 
   useEffect(() => {
     const getMembers = async () => {
@@ -133,7 +132,8 @@ function Members () {
   function filterArray (value, array) {
     return array.filter(item => {
       const re = new RegExp(`${value}*`, 'i')
-      return re.test(JSON.stringify(item))
+      const test = re.test(item.phone) || re.test(item.email)
+      return test
     })
   }
 
@@ -156,9 +156,8 @@ function Members () {
     <div>
       <h2>Members</h2>
       <Form.Control
-        type='text' placeholder='Search' value={membersDataFilter} onChange={(e) => {
+        type='text' placeholder='Search' onChange={(e) => {
           const value = e.target.value
-          setMembersDataFilter(value)
           if (value) {
             setMembersDataClone(filterArray(value, membersData))
           } else if (value === '') setMembersDataClone(membersData)
