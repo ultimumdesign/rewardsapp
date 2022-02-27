@@ -130,7 +130,7 @@ function Members () {
   }, [getAccessTokenSilently, user?.sub])
 
   function filterArray (value, array) {
-    return array.filter(obj => Object.values(obj).some(val => val.toLowerCase().includes(value)))
+    return array.filter(obj => Object.values(obj).some(val => val.toLowerCase().includes(value.toLowerCase())))
   }
 
   const membersTableHeaders = membersDataCols.length
