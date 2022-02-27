@@ -130,11 +130,7 @@ function Members () {
   }, [getAccessTokenSilently, user?.sub])
 
   function filterArray (value, array) {
-    return array.filter(item => {
-      const re = new RegExp(`${value.toLowerCase()}*`)
-      return (re.test(item.phone.toLowerCase()) ||
-      re.test(item.email.toLowerCase()))
-    })
+    return array.filter(obj => Object.values(obj).some(val => val.toLowerCase().includes(value)))
   }
 
   const membersTableHeaders = membersDataCols.length
