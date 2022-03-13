@@ -6,11 +6,13 @@ import { useEffect, useState } from 'react'
 import { Container, Form, Navbar, Nav, Table } from 'react-bootstrap'
 import { LinkContainer } from 'react-router-bootstrap'
 import { Routes, Route } from 'react-router-dom'
+import BootstrapTable from 'react-bootstrap-table-next'
 
 import LoginButton from './components/loginButton'
 import LogoutButton from './components/logoutButton'
 
 import 'bootstrap/dist/css/bootstrap.min.css'
+import 'react-bootstrap-table-next/dist/react-bootstrap-table2.min.css'
 
 function App () {
   const { user, isAuthenticated, getAccessTokenSilently } = useAuth0()
@@ -106,8 +108,13 @@ function Profile () {
 function Members () {
   const { user, getAccessTokenSilently } = useAuth0()
   const [membersData, setMembersData] = useState([])
-  const [membersDataClone, setMembersDataClone] = useState([])
-  const [membersDataCols] = useState(['first_name', 'last_name', 'email', 'phone'])
+  const [membersDataCols] = useState([
+    { dataField: 'first_name', text: 'First Name' },
+    { dataField: 'last_name', text: 'Last Name' },
+    { dataField: 'email', text: 'E-mail' },
+    { dataField: 'phone', text: 'Phone' },
+    { dataField: 'points', text: 'Points' }
+  ])
 
   useEffect(() => {
     const getMembers = async () => {
@@ -121,7 +128,6 @@ function Members () {
         })
         const body = await response.json()
         setMembersData(body)
-        setMembersDataClone(body)
       } catch (e) {
         console.log(e.message)
       }
@@ -129,46 +135,10 @@ function Members () {
     getMembers()
   }, [getAccessTokenSilently, user?.sub])
 
-  function filterArray (value, array) {
-    return array.filter(obj => Object.values(obj).some(val => val.toLowerCase().includes(value.toLowerCase())))
-  }
-
-  const membersTableHeaders = membersDataCols.length
-    ? membersDataCols.map((prop, i) => <th key={i}>{prop}</th>)
-    : <th />
-
-  const membersTable = membersData.length
-    ? membersDataClone.map((member, i) => {
-        const cells = membersDataCols.map((prop, ix) => <td key={ix}>{membersData[i][prop]}</td>)
-        return (
-          <tr key={i}>
-            {cells}
-          </tr>
-        )
-      })
-    : <tr />
-
   return (
     <div>
       <h2>Members</h2>
-      <Form.Control
-        type='text' placeholder='Search' onChange={(e) => {
-          const value = e.target.value
-          if (value) {
-            setMembersDataClone(filterArray(value, membersData))
-          } else if (value === '') setMembersDataClone(membersData)
-        }}
-      />
-      <Table responsive>
-        <thead>
-          <tr>
-            {membersTableHeaders}
-          </tr>
-        </thead>
-        <tbody>
-          {membersTable}
-        </tbody>
-      </Table>
+      <BootstrapTable keyField='id' data={membersData} columns={membersDataCols} />
     </div>
   )
 }
