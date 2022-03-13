@@ -3,10 +3,11 @@ import jwtDecode from 'jwt-decode'
 import { useAuth0 } from '@auth0/auth0-react'
 import { useEffect, useState } from 'react'
 
-import { Container, Form, Navbar, Nav, Table } from 'react-bootstrap'
+import { Container, Navbar, Nav } from 'react-bootstrap'
 import { LinkContainer } from 'react-router-bootstrap'
 import { Routes, Route } from 'react-router-dom'
 import BootstrapTable from 'react-bootstrap-table-next'
+import ToolkitProvider, { Search } from 'react-bootstrap-table2-toolkit'
 
 import LoginButton from './components/loginButton'
 import LogoutButton from './components/logoutButton'
@@ -135,10 +136,20 @@ function Members () {
     getMembers()
   }, [getAccessTokenSilently, user?.sub])
 
+  const { SearchBar } = Search
+
   return (
     <div>
       <h2>Members</h2>
-      <BootstrapTable keyField='id' data={membersData} columns={membersDataCols} />
+      <ToolkitProvider
+        keyField='id'
+        data={membersData}
+        columns={membersDataCols}
+        search
+      >
+        <SearchBar />
+        <BootstrapTable />
+      </ToolkitProvider>
     </div>
   )
 }
