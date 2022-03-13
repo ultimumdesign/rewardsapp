@@ -147,8 +147,18 @@ function Members () {
         columns={membersDataCols}
         search
       >
-        <SearchBar />
-        <BootstrapTable />
+        {
+    props => (
+      <div>
+        <h3>Input something at below input field:</h3>
+        <SearchBar {...props.searchProps} />
+        <hr />
+        <BootstrapTable
+          {...props.baseProps}
+        />
+      </div>
+    )
+  }
       </ToolkitProvider>
     </div>
   )
