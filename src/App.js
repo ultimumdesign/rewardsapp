@@ -146,13 +146,12 @@ function Members () {
         data={membersData}
         columns={membersDataCols}
         search
+        striped
       >
         {
     props => (
       <div>
-        <h3>Input something at below input field:</h3>
-        <SearchBar {...props.searchProps} />
-        <hr />
+        <SearchBar {...props.searchProps} srText='Search:' />
         <BootstrapTable
           {...props.baseProps}
         />
