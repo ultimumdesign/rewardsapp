@@ -3,7 +3,7 @@ import jwtDecode from 'jwt-decode'
 import { useAuth0 } from '@auth0/auth0-react'
 import { useEffect, useState } from 'react'
 
-import { Container, Navbar, Nav } from 'react-bootstrap'
+import { Button, Container, Modal, Navbar, Nav } from 'react-bootstrap'
 import { LinkContainer } from 'react-router-bootstrap'
 import { Routes, Route } from 'react-router-dom'
 import BootstrapTable from 'react-bootstrap-table-next'
@@ -116,6 +116,8 @@ function Members () {
     { dataField: 'phone', text: 'Phone' },
     { dataField: 'points', text: 'Points' }
   ])
+  const [show, setShow] = useState(false)
+  const [selected, setSelected] = useState({})
 
   useEffect(() => {
     const getMembers = async () => {
@@ -138,6 +140,18 @@ function Members () {
 
   const { SearchBar } = Search
 
+  const handleClose = () => setShow(false)
+  const handleShow = () => setShow(true)
+
+  const rowEvents = {
+    onClick: (e, row, rowIndex) => {
+      // open modal
+      handleShow()
+      // set current row as selected record
+      setSelected(row)
+    }
+  }
+
   return (
     <div>
       <h2>Members</h2>
@@ -147,11 +161,13 @@ function Members () {
         columns={membersDataCols}
         search
         striped
+        rowEvents={rowEvents}
       >
         {
     props => (
       <div>
         <SearchBar {...props.searchProps} srText='Search:' />
+        <div className='margin-bottom-10' />
         <BootstrapTable
           {...props.baseProps}
         />
@@ -159,6 +175,20 @@ function Members () {
     )
   }
       </ToolkitProvider>
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Modal heading</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>Selected: {selected}</Modal.Body>
+        <Modal.Footer>
+          <Button variant='secondary' onClick={handleClose}>
+            Close
+          </Button>
+          <Button variant='primary' onClick={handleClose}>
+            Save Changes
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </div>
   )
 }
