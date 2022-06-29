@@ -12,6 +12,7 @@ import ToolkitProvider, { Search } from 'react-bootstrap-table2-toolkit'
 import LoginButton from './components/loginButton'
 import LogoutButton from './components/logoutButton'
 
+import '../../App.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'react-bootstrap-table-next/dist/react-bootstrap-table2.min.css'
 
@@ -161,7 +162,6 @@ function Members () {
         columns={membersDataCols}
         search
         striped
-        rowEvents={rowEvents}
       >
         {
     props => (
@@ -169,6 +169,7 @@ function Members () {
         <SearchBar {...props.searchProps} srText='Search:' />
         <div className='margin-bottom-10' />
         <BootstrapTable
+          rowEvents={rowEvents}
           {...props.baseProps}
         />
       </div>
