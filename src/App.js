@@ -145,6 +145,7 @@ function Members () {
 
   const rowEvents = {
     onClick: (e, row, rowIndex) => {
+      console.log('test')
       // open modal
       handleShow()
       // set current row as selected record
