@@ -143,22 +143,13 @@ function Members () {
   const handleClose = () => setShow(false)
   const handleShow = () => setShow(true)
 
-  // const rowEvents = {
-  //   onClick: (e, row, rowIndex) => {
-  //     console.log('test')
-  //     // open modal
-  //     handleShow()
-  //     // set current row as selected record
-  //     setSelected(row)
-  //   }
-  // }
-
   const rowEvents = {
     onClick: (e, row, rowIndex) => {
       console.log(`clicked on row with index: ${rowIndex}`)
-    },
-    onMouseEnter: (e, row, rowIndex) => {
-      console.log(`enter on row with index: ${rowIndex}`)
+      // open modal
+      handleShow()
+      // set current row as selected record
+      setSelected(row)
     }
   }
 
