@@ -143,13 +143,22 @@ function Members () {
   const handleClose = () => setShow(false)
   const handleShow = () => setShow(true)
 
+  // const rowEvents = {
+  //   onClick: (e, row, rowIndex) => {
+  //     console.log('test')
+  //     // open modal
+  //     handleShow()
+  //     // set current row as selected record
+  //     setSelected(row)
+  //   }
+  // }
+
   const rowEvents = {
     onClick: (e, row, rowIndex) => {
-      console.log('test')
-      // open modal
-      handleShow()
-      // set current row as selected record
-      setSelected(row)
+      console.log(`clicked on row with index: ${rowIndex}`)
+    },
+    onMouseEnter: (e, row, rowIndex) => {
+      console.log(`enter on row with index: ${rowIndex}`)
     }
   }
 
@@ -162,14 +171,13 @@ function Members () {
         columns={membersDataCols}
         search
         striped
-        rowEvents={rowEvents}
       >
         {
     props => (
       <div>
-        <SearchBar {...props.searchProps} srText='Search:' />
-        <div className='margin-bottom-10' />
+        <SearchBar {...props.searchProps} srText='Search:' className='margin-bottom-10' />
         <BootstrapTable
+          rowEvents={rowEvents}
           {...props.baseProps}
         />
       </div>
