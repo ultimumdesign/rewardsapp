@@ -12,7 +12,6 @@ import ToolkitProvider, { Search } from 'react-bootstrap-table2-toolkit'
 import LoginButton from './components/loginButton'
 import LogoutButton from './components/logoutButton'
 
-import '../../App.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'react-bootstrap-table-next/dist/react-bootstrap-table2.min.css'
 
