@@ -149,7 +149,7 @@ function Members () {
       // open modal
       handleShow()
       // set current row as selected record
-      setSelected(row)
+      // setSelected(row)
     }
   }
 
