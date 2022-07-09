@@ -162,6 +162,7 @@ function Members () {
         columns={membersDataCols}
         search
         striped
+        rowEvents={rowEvents}
       >
         {
     props => (
@@ -169,7 +170,6 @@ function Members () {
         <SearchBar {...props.searchProps} srText='Search:' />
         <div className='margin-bottom-10' />
         <BootstrapTable
-          rowEvents={rowEvents}
           {...props.baseProps}
         />
       </div>
