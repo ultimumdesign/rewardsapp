@@ -154,7 +154,7 @@ function Members () {
   }
 
   return (
-    <div>
+    <>
       <h2>Members</h2>
       <ToolkitProvider
         keyField='id'
@@ -165,13 +165,13 @@ function Members () {
       >
         {
     props => (
-      <div>
+      <>
         <SearchBar {...props.searchProps} srText='Search:' className='margin-bottom-10' />
         <BootstrapTable
           rowEvents={rowEvents}
           {...props.baseProps}
         />
-      </div>
+      </>
     )
   }
       </ToolkitProvider>
@@ -179,7 +179,7 @@ function Members () {
         <Modal.Header closeButton>
           <Modal.Title>Modal heading</Modal.Title>
         </Modal.Header>
-        <Modal.Body>Selected: {selected}</Modal.Body>
+        <Modal.Body>Selected:</Modal.Body>
         <Modal.Footer>
           <Button variant='secondary' onClick={handleClose}>
             Close
@@ -189,7 +189,7 @@ function Members () {
           </Button>
         </Modal.Footer>
       </Modal>
-    </div>
+    </>
   )
 }
 
